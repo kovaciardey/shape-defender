@@ -54,7 +54,7 @@ public class Shooting : MonoBehaviour
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
 
         // Apply velocity to the bullet in the calculated direction
-        bulletRb.velocity = _aimDirection * bulletSpeed;
+        bulletRb.velocity = _aimDirection.normalized * bulletSpeed;
         
         Destroy(bullet, bulletLifetime);
     }
