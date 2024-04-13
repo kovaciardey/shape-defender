@@ -292,6 +292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   summoningText: {fileID: 0}
+  summoningMenu: {fileID: 0}
+  slowdownFactor: 0.1
+  fixedDeltaTimeFactor: 0.02
 --- !u!114 &334734552479495631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5502296613dfe884da2a18a2cb160f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lensPrefab: {fileID: 6284091179346694886, guid: 5e37e227ae01737408fe87032470ee6d, type: 3}
+  lensPrefabs: []
   summonLocation: {fileID: 2535336676654492941}
   lensParent: {fileID: 0}
 --- !u!1 &8610060277215488260

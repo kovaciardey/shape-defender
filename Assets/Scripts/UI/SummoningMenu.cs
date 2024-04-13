@@ -12,10 +12,11 @@ namespace UI
             Reset();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void SelectOption(int optionId)
         {
-        
+            Reset();
+            
+            options[optionId].Select();
         }
 
         public void Reset()

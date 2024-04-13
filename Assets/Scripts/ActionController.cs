@@ -16,6 +16,7 @@ public class ActionController : MonoBehaviour
 
     private Shooting _shooting;
     private LensSummoner _lensSummoner;
+    private SummoningMenu _summoningMenu;
 
     private bool _isShooting = true;
     private bool _isSummoning = false;
@@ -25,6 +26,7 @@ public class ActionController : MonoBehaviour
     {
         _shooting = GetComponent<Shooting>();
         _lensSummoner = GetComponent<LensSummoner>();
+        _summoningMenu = summoningMenu.GetComponent<SummoningMenu>();
         
         // turn off the summoning at the beginning of the game
         SetSummoningStatus(false);
@@ -49,6 +51,23 @@ public class ActionController : MonoBehaviour
                 
                 EndSummoning();
             }
+        }
+
+        if (!_isSummoning) return;
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SelectLens(0); // RED
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectLens(1); // GREEN
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectLens(2); // BLUE
         }
     }
     
@@ -94,6 +113,7 @@ public class ActionController : MonoBehaviour
                 
         Time.timeScale = 1f;
         
+        _summoningMenu.Reset();
         summoningMenu.SetActive(false);
     }
     
@@ -112,5 +132,11 @@ public class ActionController : MonoBehaviour
     {
         _isSummoning = value;
         _lensSummoner.enabled = value;
+    }
+
+    private void SelectLens(int lensId)
+    {
+        _lensSummoner.SelectLens(lensId);
+        _summoningMenu.SelectOption(lensId);
     }
 }
