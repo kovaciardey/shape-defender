@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 596202019394731561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1828765172339725024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2535336676654492941}
+  m_Layer: 0
+  m_Name: LensSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2535336676654492941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828765172339725024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 2.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 596202019394731561}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2447539087288595240
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596202019394731561}
   - component: {fileID: 334734552479495631}
+  - component: {fileID: 5172895116067604996}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -243,6 +275,7 @@ Transform:
   m_Children:
   - {fileID: 1374493794695813618}
   - {fileID: 8664974947890190565}
+  - {fileID: 2535336676654492941}
   m_Father: {fileID: 5247686153488953333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &334734552479495631
@@ -261,6 +294,22 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3810350178262235300, guid: 310c7ab3352853b46becf4b592f3058b, type: 3}
   bulletSpeed: 15
   bulletLifetime: 2
+--- !u!114 &5172895116067604996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107347210840363949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5502296613dfe884da2a18a2cb160f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lensPrefab: {fileID: 6284091179346694886, guid: 5e37e227ae01737408fe87032470ee6d, type: 3}
+  summonLocation: {fileID: 2535336676654492941}
+  lensParent: {fileID: 0}
+  summoningText: {fileID: 0}
 --- !u!1 &8610060277215488260
 GameObject:
   m_ObjectHideFlags: 0

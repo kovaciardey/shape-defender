@@ -58,4 +58,9 @@ public class Shooting : MonoBehaviour
         
         Destroy(bullet, bulletLifetime);
     }
+
+    public Vector3 GetDirection()
+    {
+        return _aimDirection;
+    }
 }
