@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionController : MonoBehaviour
 {   
     public Text summoningText;
+    public GameObject summoningMenu;
 
     public float slowdownFactor = 0.05f;
     public float fixedDeltaTimeFactor = 0.02f;
@@ -79,6 +81,8 @@ public class ActionController : MonoBehaviour
         // slow down the game while summoning
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = slowdownFactor * fixedDeltaTimeFactor;
+        
+        summoningMenu.SetActive(true);
     }
 
     public void EndSummoning()
@@ -89,6 +93,8 @@ public class ActionController : MonoBehaviour
         summoningText.text = "Press \"E\" to summon";
                 
         Time.timeScale = 1f;
+        
+        summoningMenu.SetActive(false);
     }
     
     public Vector3 GetDirection()
