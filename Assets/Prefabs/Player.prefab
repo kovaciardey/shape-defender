@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5538689661904799214}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,9 +323,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5502296613dfe884da2a18a2cb160f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lensPrefabs: []
+  lensPrefabs:
+  - {fileID: 6284091179346694886, guid: 5e37e227ae01737408fe87032470ee6d, type: 3}
+  - {fileID: 524219982997844704, guid: 6e77ef1958200f94fb088f7203c5cbb3, type: 3}
+  - {fileID: 6722292084219643350, guid: 002eec8123829c04e95393d5183ada5f, type: 3}
   summonLocation: {fileID: 2535336676654492941}
   lensParent: {fileID: 0}
+  lensLifetime: 5
 --- !u!1 &8610060277215488260
 GameObject:
   m_ObjectHideFlags: 0
