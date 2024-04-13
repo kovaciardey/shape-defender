@@ -605,10 +605,6 @@ PrefabInstance:
       propertyPath: lensParent
       value: 
       objectReference: {fileID: 2051374731}
-    - target: {fileID: 5172895116067604996, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: summoningText
-      value: 
-      objectReference: {fileID: 1630320555}
     - target: {fileID: 5247686153488953333, guid: 9574eee2f737824439962004962c7b56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -648,6 +644,14 @@ PrefabInstance:
     - target: {fileID: 5247686153488953333, guid: 9574eee2f737824439962004962c7b56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529594960606025193, guid: 9574eee2f737824439962004962c7b56, type: 3}
+      propertyPath: summoningText
+      value: 
+      objectReference: {fileID: 1630320555}
+    - target: {fileID: 5529594960606025193, guid: 9574eee2f737824439962004962c7b56, type: 3}
+      propertyPath: slowdownFactor
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

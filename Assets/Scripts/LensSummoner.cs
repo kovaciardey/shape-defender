@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,17 @@ public class LensSummoner : MonoBehaviour
 
     public Transform lensParent;
 
-    public Text summoningText;
+    private ActionController _ac;
+
+    private void Start()
+    {
+        _ac = GetComponent<ActionController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
             StartSummoning();
         }
@@ -25,9 +31,9 @@ public class LensSummoner : MonoBehaviour
     {
         Debug.Log("Summon");
 
-        summoningText.text = "1. Red, 2. Green, 3 Blue";
-
         SummonLens();
+        
+        _ac.EndSummoning();
     }
 
     private void SummonLens()
