@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7278362936748527200}
-  - component: {fileID: 2914154830636595042}
   - component: {fileID: 5212779950010096472}
+  - component: {fileID: 2914154830636595042}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -39,19 +39,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2914154830636595042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565378992217385884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79ef74cb93cd3146b10628c07fec088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumValue: 10
 --- !u!114 &5212779950010096472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +90,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2914154830636595042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565378992217385884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79ef74cb93cd3146b10628c07fec088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumValue: 10
 --- !u!1 &4518392751612738432
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +301,8 @@ MonoBehaviour:
   healthBar: {fileID: 2914154830636595042}
   maxLife: 10
   currentLife: 0
+  extraDamageCoefficient: 1.5
+  lowerDamageCoefficient: 0.5
   possibleColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}

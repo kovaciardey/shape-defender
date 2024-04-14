@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 0}
+  damageType: 1
 --- !u!1 &3106726377598001359
 GameObject:
   m_ObjectHideFlags: 0

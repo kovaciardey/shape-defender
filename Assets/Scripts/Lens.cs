@@ -8,11 +8,16 @@ public class Lens : MonoBehaviour
 {
     public Color color;
 
+    [SerializeField]
+    public DamageType damageType;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
             other.gameObject.GetComponent<MeshRenderer>().material.color = color;
+
+            other.gameObject.GetComponent<Bullet>().DamageType = damageType;
         }
     }
 }

@@ -5,6 +5,14 @@ using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum DamageType
+{
+    Red = 0,
+    Green = 1,
+    Blue = 2,
+    None = 3
+}
+
 public class Enemy : MonoBehaviour
 {
     public float speed = 5f; // Adjust speed as needed
@@ -13,18 +21,23 @@ public class Enemy : MonoBehaviour
     public float maxLife = 10f; 
     public float currentLife;
     
-    private Transform _player;
-
+    [Range(1f, 2f)]
+    public float extraDamageCoefficient = 1.5f;
+    [Range(0.25f, 1f)]
+    public float lowerDamageCoefficient = 0.5f;
+    
     public Color[] possibleColors = {
         Color.red, Color.green, Color.blue
     };
+    
+    private Transform _player;
+    private DamageType _enemyType;
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform; // Assumes player has "Player" tag
         
-        // set random colour
-        gameObject.GetComponent<MeshRenderer>().material.color = possibleColors[Random.Range(0, possibleColors.Length)];
+        SetMonsterType();
         
         // reset the maxlife of the enemy
         currentLife = maxLife;
@@ -53,17 +66,57 @@ public class Enemy : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        // when hit with bullet just destroy both
         if (other.gameObject.CompareTag("Bullet"))
         {
-            currentLife -= 1;
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            
+            // damage calculation
+            float damageToTake = bullet.baseDamage;
+            
+            if (bullet.DamageType == DamageType.None)
+            {
+                currentLife -= damageToTake; // base damage
+            }
+            else if (bullet.DamageType == _enemyType)
+            {
+                currentLife -= damageToTake * extraDamageCoefficient;
+            }
+            else
+            {
+                // not really sure about this one... will have to see
+                currentLife -= lowerDamageCoefficient;
+            }
 
+            // kill enemy
             if (currentLife <= 0)
             {
+                Debug.Log(_enemyType);
                 Destroy(gameObject);
             }
             
+            // destroy bullet
             Destroy(other.gameObject);
+        }
+    }
+
+    private void SetMonsterType()
+    {
+        int index = Random.Range(0, possibleColors.Length);
+        
+        // set random colour
+        gameObject.GetComponent<MeshRenderer>().material.color = possibleColors[index];
+
+        switch (index)
+        {
+            case 0:
+                _enemyType = DamageType.Red;
+                break;
+            case 1:
+                _enemyType = DamageType.Green;
+                break;
+            case 2:
+                _enemyType = DamageType.Blue;
+                break;
         }
     }
 }
