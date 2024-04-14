@@ -8,15 +8,24 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 5f;
 
     private Rigidbody _rigidbody;
+    private GameController _gameController;
+    
     private Vector3 _movementInput;
     
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     void Update()
     {
+        // don't allow actions if game paused
+        if (_gameController.IsPaused())
+        {
+            return;
+        }
+        
         // Get input from the player
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");

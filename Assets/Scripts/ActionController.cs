@@ -17,6 +17,7 @@ public class ActionController : MonoBehaviour
     private Shooting _shooting;
     private LensSummoner _lensSummoner;
     private SummoningMenu _summoningMenu;
+    private GameController _gameController;
 
     private bool _isShooting = true;
     private bool _isSummoning = false;
@@ -27,6 +28,7 @@ public class ActionController : MonoBehaviour
         _shooting = GetComponent<Shooting>();
         _lensSummoner = GetComponent<LensSummoner>();
         _summoningMenu = summoningMenu.GetComponent<SummoningMenu>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         
         // turn off the summoning at the beginning of the game
         SetSummoningStatus(false);
@@ -35,6 +37,12 @@ public class ActionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // don't allow actions if game paused
+        if (_gameController.IsPaused())
+        {
+            return;
+        }
+        
         Aim();
 
         if (Input.GetKeyDown(KeyCode.E))

@@ -22,6 +22,7 @@ public class Shooting : MonoBehaviour
 
     private ActionController _ac;
     private AmmoController _ammoController;
+    private GameController _gameController;
     
     private bool _canFire;
 
@@ -29,6 +30,7 @@ public class Shooting : MonoBehaviour
     {
         _ac = GetComponent<ActionController>();
         _ammoController = GetComponent<AmmoController>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         
         reloadBar.SetMaxReloadValue(_ammoController.reloadTime);
 
@@ -37,6 +39,12 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        // don't allow actions if game paused
+        if (_gameController.IsPaused())
+        {
+            return;
+        }
+        
         UpdateAmmoDisplay();
         UpdateReloadBarDisplay();
         
