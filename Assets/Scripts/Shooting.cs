@@ -20,7 +20,6 @@ public class Shooting : MonoBehaviour
     public Text ammoClipText;
     public ReloadBar reloadBar;
 
-
     private ActionController _ac;
     private AmmoController _ammoController;
     

@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     public float maxLife = 10f; 
     public float currentLife;
+
+    public float damageToPlayer = 5f; 
     
     [Range(1f, 2f)]
     public float extraDamageCoefficient = 1.5f;
