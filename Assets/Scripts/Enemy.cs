@@ -1,12 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     public float speed = 5f; // Adjust speed as needed
+    public HealthBar healthBar;
+
+    public float maxLife = 10f; 
+    public float currentLife;
+    
     private Transform _player;
 
     public Color[] possibleColors = {
@@ -20,12 +26,16 @@ public class Enemy : MonoBehaviour
         // set random colour
         gameObject.GetComponent<MeshRenderer>().material.color = possibleColors[Random.Range(0, possibleColors.Length)];
         
-        // need more control for the color here to define the damage better
+        // reset the maxlife of the enemy
+        currentLife = maxLife;
+        healthBar.UpdateMaximumValue(maxLife);
     }
 
     void Update()
     {
         MoveTowardsPlayer();
+
+        healthBar.SetValue(currentLife);
     }
 
     void MoveTowardsPlayer()
@@ -46,7 +56,13 @@ public class Enemy : MonoBehaviour
         // when hit with bullet just destroy both
         if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            currentLife -= 1;
+
+            if (currentLife <= 0)
+            {
+                Destroy(gameObject);
+            }
+            
             Destroy(other.gameObject);
         }
     }
