@@ -19,6 +19,8 @@ public class LensSummoner : MonoBehaviour
     // -1 to show there is no selected prefab
     private int _selectedPrefab = -1;
 
+    private GameObject _spawnedLens;
+
     private void Start()
     {
         _ac = GetComponent<ActionController>();
@@ -41,7 +43,12 @@ public class LensSummoner : MonoBehaviour
 
     public void SelectLens(int lensId)
     {
+        Destroy(_spawnedLens);
+        
+        // spawn the prefab here
         _selectedPrefab = lensId;
+        
+        _spawnedLens = Instantiate(lensPrefabs[_selectedPrefab], summonLocation);
     }
 
     private void StartSummoning()
@@ -57,11 +64,9 @@ public class LensSummoner : MonoBehaviour
     {
         // only if there is prefab selected
         if (_selectedPrefab < 0) return;
-        
-        GameObject lens = Instantiate(lensPrefabs[_selectedPrefab], summonLocation);
             
-        lens.transform.SetParent(lensParent);
+        _spawnedLens.transform.SetParent(lensParent);
         
-        Destroy(lens, lensLifetime);
+        Destroy(_spawnedLens, lensLifetime);
     }
 }
