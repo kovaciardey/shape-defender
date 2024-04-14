@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1166877416801138871}
   - component: {fileID: 1133795272217227808}
   m_Layer: 0
-  m_Name: RedEnemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,3 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  possibleColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs; // The prefab of the enemy to spawn
+    public GameObject enemyPrefab; // The prefab of the enemy to spawn
     public float spawnInterval = 1f; // Time between enemy spawns
     public float spawnRadius = 5f; // The radius within which enemies can spawn
     public float heightOffset = 0.5f; // Height offset from the ground
@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
             randomPosition.y = heightOffset; // Ensure enemies spawn on the same Y-level
 
             // Spawn an enemy at the random position
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], randomPosition, Quaternion.identity);
+            Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
         }
     }
 

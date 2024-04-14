@@ -2,16 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     public float speed = 5f; // Adjust speed as needed
     private Transform _player;
-    
+
+    public Color[] possibleColors = {
+        Color.red, Color.green, Color.blue
+    };
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform; // Assumes player has "Player" tag
+        
+        // set random colour
+        gameObject.GetComponent<MeshRenderer>().material.color = possibleColors[Random.Range(0, possibleColors.Length)];
+        
+        // need more control for the color here to define the damage better
     }
 
     void Update()
