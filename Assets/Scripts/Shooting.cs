@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour
 {
@@ -11,17 +13,36 @@ public class Shooting : MonoBehaviour
     public float bulletSpeed = 10f;
     public float bulletLifetime = 2f;
 
+    [Header("Shooting")] 
+    public float fireRate = 0.4f;
+    public bool usesAmmo = true;
+    
+    public Text ammoClipText;
+    public ReloadBar reloadBar;
+
+
     private ActionController _ac;
+    private AmmoController _ammoController;
+    
+    private bool _canFire;
 
     private void Start()
     {
         _ac = GetComponent<ActionController>();
+        _ammoController = GetComponent<AmmoController>();
+        
+        reloadBar.SetMaxReloadValue(_ammoController.reloadTime);
+
+        _canFire = true;
     }
 
     void Update()
     {
+        UpdateAmmoDisplay();
+        UpdateReloadBarDisplay();
+        
         // if left click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _canFire && !_ammoController.IsReloading)
         {
             Shoot();
         }
@@ -29,18 +50,47 @@ public class Shooting : MonoBehaviour
 
     private void Shoot()
     {
+        StartCoroutine(FireRate());
+        
         Debug.Log("Shoot");
 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-        
-        // it might be an idea to move this on a bullet script
-        
-        // Get the Rigidbody component of the bullet
-        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        IEnumerator FireRate()
+        {
+            _canFire = false;
 
-        // Apply velocity to the bullet in the calculated direction
-        bulletRb.velocity = _ac.GetDirection().normalized * bulletSpeed;
+            if (GetComponent<AmmoController>().CurrentClipAmmo > 0)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
         
-        Destroy(bullet, bulletLifetime);
+                // it might be an idea to move this on a bullet script
+        
+                // Get the Rigidbody component of the bullet
+                Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+
+                // Apply velocity to the bullet in the calculated direction
+                bulletRb.velocity = _ac.GetDirection().normalized * bulletSpeed;
+        
+                Destroy(bullet, bulletLifetime);
+                
+                if (usesAmmo)
+                {
+                    gameObject.GetComponent<AmmoController>().SubtractAmmo();
+                }
+
+                yield return new WaitForSeconds(fireRate);
+                _canFire = true;
+            }
+        }
     }
+    
+    // show ammo
+    private void UpdateAmmoDisplay()
+    {
+        ammoClipText.text = _ammoController.CurrentClipAmmo.ToString();
+    }
+    
+    private void UpdateReloadBarDisplay()
+    {
+        reloadBar.SetCurrentReloadValue(_ammoController.CurrentReloadTime);
+    } 
 }
