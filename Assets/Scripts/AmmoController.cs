@@ -19,7 +19,8 @@ public class AmmoController : MonoBehaviour
     {
         IsReloading = false;
         CurrentClipAmmo = clipSize;
-        CurrentAmmo = startingAmmo;    
+        CurrentAmmo = startingAmmo;
+        CurrentReloadTime = reloadTime;
     }
 
     void Update()
@@ -32,7 +33,7 @@ public class AmmoController : MonoBehaviour
 
     public void StartReload()
     {
-        Debug.Log("Reload");
+        // Debug.Log("Reload");
         StartCoroutine(ReloadRoutine());
     }
 

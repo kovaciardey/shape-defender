@@ -52,7 +52,7 @@ public class Shooting : MonoBehaviour
     {
         StartCoroutine(FireRate());
         
-        Debug.Log("Shoot");
+        // Debug.Log("Shoot");
 
         IEnumerator FireRate()
         {
