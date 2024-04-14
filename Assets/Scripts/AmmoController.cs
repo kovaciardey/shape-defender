@@ -25,10 +25,15 @@ public class AmmoController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && !IsReloading && CurrentClipAmmo < clipSize)
+        // if (Input.GetKey(KeyCode.R) && !IsReloading && CurrentClipAmmo < clipSize)
+        // {
+        //     StartReload();
+        // }    
+
+        if (!IsReloading && CurrentClipAmmo <= 0)
         {
             StartReload();
-        }    
+        }
     }
 
     public void StartReload()

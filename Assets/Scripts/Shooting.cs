@@ -78,8 +78,10 @@ public class Shooting : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(fireRate);
-                _canFire = true;
+                
             }
+            
+            _canFire = true;
         }
     }
     

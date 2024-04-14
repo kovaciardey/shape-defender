@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb61f9454864d8a4aa8f84bd190431a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipSize: 15
+  clipSize: 5
   startingAmmo: 100
   reloadTime: 3
 --- !u!1 &692966105
@@ -612,7 +612,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.6226415, g: 0.50365764, b: 0.17915626, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
