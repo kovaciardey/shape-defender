@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 5f; // Adjust speed as needed
     private Transform _player;
+    
 
     void Start()
     {
@@ -26,6 +28,17 @@ public class Enemy : MonoBehaviour
         }
 
         Vector3 direction = (_player.position - transform.position).normalized;
-        transform.position += direction * (speed * Time.deltaTime);
+        Vector3 newPosition = transform.position + direction * (speed * Time.deltaTime);
+        transform.position = new Vector3(newPosition.x, 0.5f, newPosition.z);
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        // when hit with bullet just destroy both
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }
