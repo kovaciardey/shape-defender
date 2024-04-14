@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb61f9454864d8a4aa8f84bd190431a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipSize: 5
+  clipSize: 15
   startingAmmo: 100
   reloadTime: 3
 --- !u!1 &692966105

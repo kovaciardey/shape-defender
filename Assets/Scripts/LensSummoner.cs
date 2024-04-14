@@ -19,7 +19,7 @@ public class LensSummoner : MonoBehaviour
     // -1 to show there is no selected prefab
     private int _selectedPrefab = -1;
 
-    private GameObject _spawnedLens;
+    private GameObject _lensShadow;
 
     private void Start()
     {
@@ -35,6 +35,7 @@ public class LensSummoner : MonoBehaviour
         
         // would it be an idea to consider a radial menu?
         // might be a bit too much tbh
+        
         if (Input.GetMouseButtonDown(0))
         {
             StartSummoning();
@@ -43,12 +44,14 @@ public class LensSummoner : MonoBehaviour
 
     public void SelectLens(int lensId)
     {
-        Destroy(_spawnedLens);
+        Destroy(_lensShadow);
         
         // spawn the prefab here
         _selectedPrefab = lensId;
         
-        _spawnedLens = Instantiate(lensPrefabs[_selectedPrefab], summonLocation);
+        _lensShadow = Instantiate(lensPrefabs[_selectedPrefab], summonLocation);
+        // disable the collider for the shadow
+        _lensShadow.GetComponent<BoxCollider>().enabled = false;
     }
 
     private void StartSummoning()
@@ -65,8 +68,9 @@ public class LensSummoner : MonoBehaviour
         // only if there is prefab selected
         if (_selectedPrefab < 0) return;
             
-        _spawnedLens.transform.SetParent(lensParent);
+        GameObject newLens = Instantiate(lensPrefabs[_selectedPrefab], _lensShadow.transform.position, _lensShadow.transform.rotation, lensParent);
         
-        Destroy(_spawnedLens, lensLifetime);
+        Destroy(newLens, lensLifetime);
+        Destroy(_lensShadow);
     }
 }
