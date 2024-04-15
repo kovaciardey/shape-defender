@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour
     public Color[] possibleColors = {
         Color.red, Color.green, Color.blue
     };
+
+    public float avoidanceRadius = 1f;
+    public float avoidanceWeight = 1f;
     
     private Transform _player;
     private DamageType _enemyType;
@@ -60,9 +63,37 @@ public class Enemy : MonoBehaviour
             Debug.LogWarning("Player not found!");
             return;
         }
-
+        
         Vector3 direction = (_player.position - transform.position).normalized;
-        Vector3 newPosition = transform.position + direction * (speed * Time.deltaTime);
+        
+        // Avoidance behavior
+        Vector3 avoidanceDirection = Vector3.zero;
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, avoidanceRadius);
+        foreach (Collider enemyCollider in nearbyEnemies)
+        {
+            if (enemyCollider.gameObject.CompareTag("Player"))
+            {
+                continue;
+            }
+            
+            if (enemyCollider.gameObject.CompareTag("Bullet"))
+            {
+                continue;
+            }
+
+            if (enemyCollider.gameObject == gameObject)
+            {
+                continue;
+            }
+            
+            Vector3 avoidanceVector = transform.position - enemyCollider.transform.position;
+            avoidanceDirection += avoidanceVector.normalized / avoidanceVector.magnitude; // Add normalized vector towards enemy
+        }
+        
+        // Combine movement direction and avoidance direction
+        Vector3 combinedDirection = direction + avoidanceDirection.normalized * avoidanceWeight;
+        Vector3 newPosition = transform.position + combinedDirection * (speed * Time.deltaTime);
+        
         transform.position = new Vector3(newPosition.x, 0.5f, newPosition.z);
     }
     

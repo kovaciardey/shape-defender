@@ -21,21 +21,22 @@ public class EnemySpawner : MonoBehaviour
         // Loop infinitely while the spawner is active
         while (isActive)
         {
-            // Wait for the specified spawn interval
-            yield return new WaitForSeconds(spawnInterval);
-
             // Calculate a random position within the spawn area
             Vector3 randomPosition = transform.position + Random.insideUnitSphere * spawnRadius;
             randomPosition.y = heightOffset; // Ensure enemies spawn on the same Y-level
 
             // Spawn an enemy at the random position
             Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+            
+            // Wait for the specified spawn interval
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
     // This method can be called to stop spawning enemies
     public void StopSpawning()
     {
+        // would need to call this maybe on pausing the game or smth?
         StopCoroutine(SpawnEnemyRoutine());
     }
 }

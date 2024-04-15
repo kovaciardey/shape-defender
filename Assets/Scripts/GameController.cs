@@ -9,19 +9,28 @@ public class GameController : MonoBehaviour
     public Text timerText; // Reference to the UI text element to display the timer
 
     public GameObject instructionsMenu;
+    public GameObject pauseMenu;
     
     private float _timeRemaining; // Time remaining for the countdown
     private bool _timerRunning; // Flag to check if the timer is running
     
     private bool _isPaused = false;
+
+    private List<GameObject> _dialogs;
     
     void Start()
     {
         _timeRemaining = totalTime; // Initialize the time remaining
         _timerRunning = true; // Start the timer
+
+        _dialogs = new List<GameObject>();
         
         // start the game as paused
-        PauseGame(); 
+        // PauseGame();
+
+        _dialogs.Add(instructionsMenu);
+        
+        StartGame();
     }
     
     void Update()
@@ -64,6 +73,13 @@ public class GameController : MonoBehaviour
         instructionsMenu.SetActive(false);
     }
 
+    public void ResumeFromPauseMenu()
+    {
+        Unpause();
+        
+        pauseMenu.SetActive(false);
+    }
+
     private void PauseGame()
     {
         _isPaused = true;
@@ -81,5 +97,14 @@ public class GameController : MonoBehaviour
     public bool IsPaused()
     {
         return _isPaused;
+    }
+
+    // hide all dialogs
+    public void ResetDialogs()
+    {
+        foreach (GameObject dialog in _dialogs)
+        {
+            dialog.SetActive(false);
+        }
     }
 }

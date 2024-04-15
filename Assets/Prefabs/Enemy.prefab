@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 5212779950010096472}
-  maximumValue: 10
 --- !u!1 &4518392751612738432
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +279,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -298,16 +297,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c382bc2806d8646b44bf1c58e950da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   healthBar: {fileID: 2914154830636595042}
   maxLife: 10
   currentLife: 0
-  extraDamageCoefficient: 1.5
+  damageToPlayer: 5
+  extraDamageCoefficient: 2
   lowerDamageCoefficient: 0.5
   possibleColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
+  avoidanceRadius: 0.5
+  avoidanceWeight: 0.3
 --- !u!1 &6380132038161397667
 GameObject:
   m_ObjectHideFlags: 0
