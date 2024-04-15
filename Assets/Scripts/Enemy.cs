@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     public float damageToPlayer = 5f; 
     
-    [Range(1f, 2f)]
+    [Range(1f, 3f)]
     public float extraDamageCoefficient = 1.5f;
     [Range(0.25f, 1f)]
     public float lowerDamageCoefficient = 0.5f;
@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
             // kill enemy
             if (currentLife <= 0)
             {
-                Debug.Log(_enemyType);
+                // Debug.Log(_enemyType);
                 Destroy(gameObject);
             }
             

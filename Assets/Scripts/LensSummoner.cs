@@ -56,7 +56,7 @@ public class LensSummoner : MonoBehaviour
 
     private void StartSummoning()
     {
-        Debug.Log("Summon");
+        // Debug.Log("Summon");
 
         SummonLens();
         

@@ -302,7 +302,7 @@ MonoBehaviour:
   maxLife: 10
   currentLife: 0
   damageToPlayer: 5
-  extraDamageCoefficient: 2
+  extraDamageCoefficient: 3
   lowerDamageCoefficient: 0.5
   possibleColors:
   - {r: 1, g: 0, b: 0, a: 1}
