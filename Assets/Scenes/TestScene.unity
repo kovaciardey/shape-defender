@@ -4140,48 +4140,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1978789307}
     - target: {fileID: 334734552479495631, guid: 9574eee2f737824439962004962c7b56, type: 3}
+      propertyPath: bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 334734552479495631, guid: 9574eee2f737824439962004962c7b56, type: 3}
       propertyPath: ammoClipText
       value: 
       objectReference: {fileID: 1685013037}
     - target: {fileID: 2447539087288595240, guid: 9574eee2f737824439962004962c7b56, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: lengthInSec
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4022311468089328578, guid: 9574eee2f737824439962004962c7b56, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].outSlope
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5172895116067604996, guid: 9574eee2f737824439962004962c7b56, type: 3}
       propertyPath: lensParent

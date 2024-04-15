@@ -15,9 +15,7 @@ public class Lens : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            other.gameObject.GetComponent<MeshRenderer>().material.color = color;
-
-            other.gameObject.GetComponent<Bullet>().DamageType = damageType;
+            other.GetComponent<Bullet>().SetType(damageType, color);
         }
     }
 }

@@ -467,6 +467,18 @@ PrefabInstance:
       value: ShootingSparks
       objectReference: {fileID: 0}
     - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
       propertyPath: ShapeModule.type
       value: 4
       objectReference: {fileID: 0}
@@ -559,12 +571,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
       propertyPath: InitialModule.startLifetime.maxCurve.m_Curve.Array.data[1].inSlope
       value: -1.1682997
       objectReference: {fileID: 0}
     - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
       propertyPath: InitialModule.startLifetime.maxCurve.m_Curve.Array.data[2].inSlope
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].outSlope
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6631982534843405285, guid: 71612066afc86a0439f16dc63bfac4bd, type: 3}
       propertyPath: InitialModule.startLifetime.maxCurve.m_Curve.Array.data[0].inWeight
