@@ -16,6 +16,8 @@ public class Shooting : MonoBehaviour
     [Header("Shooting")] 
     public float fireRate = 0.4f;
     public bool usesAmmo = true;
+
+    public ParticleSystem shootingParticles;
     
     public Text ammoClipText;
     public ReloadBar reloadBar;
@@ -60,6 +62,8 @@ public class Shooting : MonoBehaviour
         StartCoroutine(FireRate());
         
         // Debug.Log("Shoot");
+        
+        shootingParticles.Play();
 
         IEnumerator FireRate()
         {

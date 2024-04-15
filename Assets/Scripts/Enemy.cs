@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour
 
     public float stunDuration = 0.5f;
     public Color damagedColor;
+
+    public ParticleSystem destroyedParticles;
     
     private Transform _player;
     private DamageType _enemyType;
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
     private Color _selectedColor;
 
     private bool _canMove = true;
+    private bool _isDestroyed = false;
 
     void Start()
     {
@@ -64,12 +67,14 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        healthBar.SetValue(currentLife);
+        
+        if (_isDestroyed) return;
+        
         if (_canMove)
         {
             MoveTowardsPlayer();
         }
-
-        healthBar.SetValue(currentLife);
     }
 
     void MoveTowardsPlayer()
@@ -115,6 +120,8 @@ public class Enemy : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        if (_isDestroyed) return;
+        
         if (other.gameObject.CompareTag("Bullet"))
         {
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
@@ -139,11 +146,16 @@ public class Enemy : MonoBehaviour
             // kill enemy
             if (currentLife <= 0)
             {
+                _isDestroyed = true;
+                
+                destroyedParticles.Play();
                 // Debug.Log(_enemyType);
-                Destroy(gameObject);
+                Destroy(gameObject, destroyedParticles.main.duration);
+                // Destroy(gameObject);
             }
 
             StartCoroutine(Stun());
+            
             
             // destroy bullet
             Destroy(other.gameObject);

@@ -67,6 +67,11 @@ public class LensSummoner : MonoBehaviour
     {
         // only if there is prefab selected
         if (_selectedPrefab < 0) return;
+
+        if (_lensShadow == null)
+        {
+            return;
+        }
             
         GameObject newLens = Instantiate(lensPrefabs[_selectedPrefab], _lensShadow.transform.position, _lensShadow.transform.rotation, lensParent);
         
