@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -8,33 +11,44 @@ public class GameController : MonoBehaviour
     public float totalTime = 60f; // Total time for the countdown
     public Text timerText; // Reference to the UI text element to display the timer
 
-    public GameObject instructionsMenu;
     public GameObject pauseMenu;
+
+    public Text welcomeText;
+    public Text startText;
+
+    public GameObject startGameButton;
+
+    public HealthController healthController;
     
     private float _timeRemaining; // Time remaining for the countdown
     private bool _timerRunning; // Flag to check if the timer is running
     
     private bool _isPaused = false;
 
-    private List<GameObject> _dialogs;
+    // private List<GameObject> _dialogs;
     
     void Start()
     {
-        _timeRemaining = totalTime; // Initialize the time remaining
-        _timerRunning = true; // Start the timer
-
-        _dialogs = new List<GameObject>();
-        
         // start the game as paused
-        // PauseGame();
+        InitialSetup();
 
-        _dialogs.Add(instructionsMenu);
+        // _dialogs = new List<GameObject>();
         
-        StartGame();
+        // StartGame();
     }
     
     void Update()
     {
+        if (healthController.IsDead())
+        {
+            GameOver();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+        
         if (_timerRunning)
         {
             // Update the time remaining
@@ -56,37 +70,65 @@ public class GameController : MonoBehaviour
             // Check if the timer has reached zero
             if (_timeRemaining <= 0)
             {
-                _timerRunning = false; // Stop the timer
-                
-                PauseGame();
-                
-                // Perform actions when the timer hits zero (e.g., end the game)
-                Debug.Log("Game Over!");
+                GameWon();
             }
         }
+    }
+
+    private void InitialSetup()
+    {
+        PauseGame();
+        
+        _timeRemaining = totalTime; // Initialize the time remaining
+
+        welcomeText.text = "Get Ready!";
+        startText.text = "BEGIN!";
+    }
+
+    private void GameWon()
+    {
+        _timerRunning = false; // Stop the timer
+                
+        StopGameExecution();
+                
+        welcomeText.text = "YOU WON!";
+        startGameButton.SetActive(false);
     }
 
     public void StartGame()
     {
         Unpause();
         
-        instructionsMenu.SetActive(false);
-    }
-
-    public void ResumeFromPauseMenu()
-    {
-        Unpause();
+        _timerRunning = true; // Start the timer
         
         pauseMenu.SetActive(false);
     }
 
+    private void GameOver()
+    {
+        StopGameExecution();
+        
+        welcomeText.text = "Game Over!";
+        startGameButton.SetActive(false);
+    }
+    
     private void PauseGame()
+    {
+        StopGameExecution();
+        
+        welcomeText.text = "Paused";
+        startText.text = "Continue";
+    }
+
+    private void StopGameExecution()
     {
         _isPaused = true;
         
         Time.timeScale = 0f;
+        
+        pauseMenu.SetActive(true);
     }
-
+    
     private void Unpause()
     {
         _isPaused = false;
@@ -99,12 +141,11 @@ public class GameController : MonoBehaviour
         return _isPaused;
     }
 
-    // hide all dialogs
-    public void ResetDialogs()
+    public void ResetGame()
     {
-        foreach (GameObject dialog in _dialogs)
-        {
-            dialog.SetActive(false);
-        }
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        
+        StartGame();
     }
 }

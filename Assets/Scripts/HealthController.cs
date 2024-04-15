@@ -22,6 +22,11 @@ public class HealthController : MonoBehaviour
         healthBar.SetValue(currentHealth);
     }
 
+    public bool IsDead()
+    {
+        return currentHealth <= 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
