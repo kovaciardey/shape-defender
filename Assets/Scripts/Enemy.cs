@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     private Transform _player;
     private DamageType _enemyType;
     private MeshRenderer _meshRenderer;
+    private AudioSource _audioSource;
 
     private Color _selectedColor;
 
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform; // Assumes player has "Player" tag
         _meshRenderer = GetComponent<MeshRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         
         SetMonsterType();
         _meshRenderer.material.color = _selectedColor;
@@ -121,6 +123,8 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_isDestroyed) return;
+        
+        _audioSource.Play();
         
         if (other.gameObject.CompareTag("Bullet"))
         {

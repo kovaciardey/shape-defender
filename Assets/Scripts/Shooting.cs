@@ -25,6 +25,7 @@ public class Shooting : MonoBehaviour
     private ActionController _ac;
     private AmmoController _ammoController;
     private GameController _gameController;
+    private AudioSource _audioSource;
     
     private bool _canFire;
 
@@ -33,6 +34,7 @@ public class Shooting : MonoBehaviour
         _ac = GetComponent<ActionController>();
         _ammoController = GetComponent<AmmoController>();
         _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _audioSource = GetComponent<AudioSource>();
         
         reloadBar.SetMaxReloadValue(_ammoController.reloadTime);
 
@@ -64,6 +66,8 @@ public class Shooting : MonoBehaviour
         // Debug.Log("Shoot");
         
         shootingParticles.Play();
+        
+        _audioSource.Play();
 
         IEnumerator FireRate()
         {
