@@ -15,6 +15,7 @@ public enum DamageType
 
 public class Enemy : MonoBehaviour
 {
+    // I could experiment with variable movement speed
     public float speed = 5f; // Adjust speed as needed
     public HealthBar healthBar;
 
@@ -23,8 +24,10 @@ public class Enemy : MonoBehaviour
 
     public float damageToPlayer = 5f; 
     
+    // this is high to make sure when same colour it's just one shot kill 
+    // without having to rework the damage script
     [Range(1f, 3f)]
-    public float extraDamageCoefficient = 1.5f;
+    public float extraDamageCoefficient = 1.5f; 
     [Range(0.25f, 1f)]
     public float lowerDamageCoefficient = 0.5f;
     
@@ -34,15 +37,25 @@ public class Enemy : MonoBehaviour
 
     public float avoidanceRadius = 1f;
     public float avoidanceWeight = 1f;
+
+    public float stunDuration = 0.5f;
+    public Color damagedColor;
     
     private Transform _player;
     private DamageType _enemyType;
+    private MeshRenderer _meshRenderer;
+
+    private Color _selectedColor;
+
+    private bool _canMove = true;
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform; // Assumes player has "Player" tag
+        _meshRenderer = GetComponent<MeshRenderer>();
         
         SetMonsterType();
+        _meshRenderer.material.color = _selectedColor;
         
         // reset the maxlife of the enemy
         currentLife = maxLife;
@@ -51,7 +64,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        MoveTowardsPlayer();
+        if (_canMove)
+        {
+            MoveTowardsPlayer();
+        }
 
         healthBar.SetValue(currentLife);
     }
@@ -126,6 +142,8 @@ public class Enemy : MonoBehaviour
                 // Debug.Log(_enemyType);
                 Destroy(gameObject);
             }
+
+            StartCoroutine(Stun());
             
             // destroy bullet
             Destroy(other.gameObject);
@@ -136,8 +154,7 @@ public class Enemy : MonoBehaviour
     {
         int index = Random.Range(0, possibleColors.Length);
         
-        // set random colour
-        gameObject.GetComponent<MeshRenderer>().material.color = possibleColors[index];
+        _selectedColor = possibleColors[index];
 
         switch (index)
         {
@@ -151,5 +168,16 @@ public class Enemy : MonoBehaviour
                 _enemyType = DamageType.Blue;
                 break;
         }
+    }
+
+    IEnumerator Stun()
+    {
+        _canMove = false;
+        _meshRenderer.material.color = damagedColor;
+        
+        yield return new WaitForSeconds(stunDuration);
+
+        _canMove = true;
+        _meshRenderer.material.color = _selectedColor;
     }
 }

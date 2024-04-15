@@ -310,6 +310,8 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   avoidanceRadius: 0.5
   avoidanceWeight: 0.3
+  stunDuration: 0.25
+  damagedColor: {r: 0.2264151, g: 0.05873977, b: 0.05873977, a: 0}
 --- !u!1 &6380132038161397667
 GameObject:
   m_ObjectHideFlags: 0
